@@ -91,7 +91,7 @@ function onStartTimer() {
         if (hours > 0) {
           hours -= 1;
         } else if (!hours) {
-          hours = 59;
+          hours = 23;
           if (days > 0) {
             days -= 1;
           } else if (!days) {
