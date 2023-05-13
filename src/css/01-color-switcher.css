@@ -1,0 +1,64 @@
+:root {
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 250ms;
+}
+
+.link-wrap-first {
+  padding-top: 30px;
+  margin: auto;
+  max-width: 1000px;
+  display: flex;
+  gap: 240px;
+  justify-content: flex-end;
+  margin-bottom: 200px;
+}
+
+.btn-wrapper {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+button {
+  padding: 8px 12px;
+  font-size: 48px;
+  cursor: pointer;
+  min-width: 100%;
+  min-height: 60px;
+  margin: auto;
+  display: block;
+  border: 2px solid transparent;
+  border-radius: 4px;
+
+  color: #11121c;
+  background: #eaeaea;
+  box-shadow: 0px 2px 6px rgba(46, 47, 66, 0.08),
+    0px 2px 2px rgba(46, 47, 66, 0.16), 0px 2px 3px rgba(46, 47, 66, 0.08);
+
+  transition-property: background-color, color, box-shadow;
+  transition-duration: var(--time-duration);
+  transition-timing-function: var(--timing-function);
+}
+
+button:is(:focus, :hover) {
+  color: white;
+  background-color: #363737f0;
+  box-shadow: 0px 2px 6px rgba(46, 47, 66, 0.08),
+    0px 2px 2px rgba(46, 47, 66, 0.16), 0px 2px 3px rgba(46, 47, 66, 0.08);
+}
+
+button:active {
+  color: rgb(228, 224, 89);
+  background-color: #1a1a1af0;
+  box-shadow: 0px 2px 6px rgba(46, 47, 66, 0.08),
+    0px 2px 2px rgba(46, 47, 66, 0.16), 0px 2px 3px rgba(46, 47, 66, 0.08);
+}
+
+.isNotActive {
+  color: rgb(171, 171, 169);
+  background-color: #626161f0;
+  box-shadow: 0px 2px 6px rgba(46, 47, 66, 0.08),
+    0px 2px 2px rgba(46, 47, 66, 0.16), 0px 2px 3px rgba(46, 47, 66, 0.08);
+}
