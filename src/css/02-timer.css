@@ -13,7 +13,7 @@
   max-width: 1300px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 #datetime-picker {
@@ -60,7 +60,7 @@ button {
 
 .timer {
   margin: auto;
-  max-width: 1300px;
+  max-width: 1400px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -74,8 +74,18 @@ button {
 
 .value {
   font-weight: 700;
-  font-size: 150px;
-  color: gold;
+  font-size: 250px;
+  color: rgb(47, 63, 109);
+}
+
+span[data-days],
+span[data-hours] {
+  color: rgb(29, 107, 202);
+}
+
+span[data-minutes],
+span[data-seconds] {
+  color: yellow;
 }
 
 .label {
