@@ -4,6 +4,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 require('flatpickr/dist/themes/dark.css');
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import { notifyInit } from './notify-options';
 
 const options = {
@@ -15,6 +16,12 @@ const options = {
     console.log(selectedDates[0]);
   },
 };
+
+Report.info(
+  "Vitaly Klitschko's timer",
+  '"Today, not everyone can see tomorrow,<br>Rather, everything can be seen, but not everything can be seen."<br/><br/> V. Klitschko',
+  'Okey'
+);
 
 let timerTime = null;
 let timerId = null;
@@ -36,16 +43,20 @@ setBtnStyles({
   removeClass: 'start-btn',
 });
 
-let dateValue = ref.dateInput.value || '';
+let dateValue = ref.dateInput.value || null;
 
 ref.dateInput.addEventListener('input', onSetDate);
 
 function onSetDate(e) {
   dateValue = e.target.value;
-  const selectDate = new Date(dateValue);
-  const nowDate = Date.now();
-  timerTime = selectDate - nowDate;
-  checkTime(timerTime);
+  if (dateValue) {
+    const selectDate = new Date(dateValue);
+    const nowDate = Date.now();
+    timerTime = selectDate - nowDate;
+    checkTime(timerTime);
+  } else {
+    Notify.warning('Wrong date. Select available date, please', notifyInit);
+  }
 }
 
 function checkTime(timerTime) {
@@ -69,6 +80,12 @@ ref.startBtn.addEventListener('click', onStartTimer);
 
 function onStartTimer() {
   let { days, hours, minutes, seconds } = convertMs(timerTime);
+  setBtnStyles({
+    disabled: true,
+    addClass: 'isNotActive',
+    removeClass: 'start-btn',
+  });
+  ref.dateInput.disabled = true;
 
   timerId = setInterval(() => {
     ref.daysEl.innerHTML = days > 99 ? days : addLeadingZero(days);
@@ -78,6 +95,12 @@ function onStartTimer() {
 
     if (!days && !hours && !minutes && !seconds) {
       clearInterval(timerId);
+      ref.dateInput.disabled = false;
+      Report.info(
+        'The countdown is complete.',
+        'You can start a new countdown by selecting a new date.',
+        'Have a nice day!!!'
+      );
       return;
     }
     if (seconds > 0) {
