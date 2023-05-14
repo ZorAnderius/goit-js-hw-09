@@ -7,24 +7,24 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { notifyInit } from './notify-options';
 
+let timerTime = null;
+let timerId = null;
+
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
+    checkTime(selectedDates[0]);
   },
 };
 
 Report.info(
   "Vitaly Klitschko's timer",
-  '"Today, not everyone can see tomorrow,<br>Rather, everything can be seen, but not everything can be seen."<br/><br/> V. Klitschko',
+  '"Today, not everyone can see tomorrow,<br/>Rather, everything can be seen, but not everything can be seen."<br/><br/> V. Klitschko',
   'Okey'
 );
-
-let timerTime = null;
-let timerId = null;
 
 flatpickr('#datetime-picker', options);
 
@@ -37,12 +37,6 @@ const ref = {
   secEl: document.querySelector('span[data-seconds]'),
 };
 
-setBtnStyles({
-  disabled: true,
-  addClass: 'isNotActive',
-  removeClass: 'start-btn',
-});
-
 let dateValue = ref.dateInput.value || null;
 
 ref.dateInput.addEventListener('input', onSetDate);
@@ -53,7 +47,6 @@ function onSetDate(e) {
     const selectDate = new Date(dateValue);
     const nowDate = Date.now();
     timerTime = selectDate - nowDate;
-    checkTime(timerTime);
   } else {
     Notify.warning('Wrong date. Select available date, please', notifyInit);
   }

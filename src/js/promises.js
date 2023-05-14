@@ -32,6 +32,7 @@ function onSubmitForm(e) {
         );
       });
   }
+  e.currentTarget.reset();
 }
 
 function createPromise(position, delay) {
