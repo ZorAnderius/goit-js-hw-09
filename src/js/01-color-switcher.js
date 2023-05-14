@@ -1,27 +1,43 @@
-const startBtn = document.querySelector('button[data-start]');
-const stopBtn = document.querySelector('button[data-stop]');
+const ref = {
+  startBtn: document.querySelector('button[data-start]'),
+  stopBtn: document.querySelector('button[data-stop]'),
+};
+
 let timerId = null;
 
-startBtn.addEventListener('click', onChangeFontColor);
+ref.startBtn.addEventListener('click', onChangeFontColor);
 
 function onChangeFontColor() {
   timerId = setInterval(() => {
     document.body.style.background = getRandomHexColor();
   }, 1000);
-  startBtn.disabled = true;
-  startBtn.classList.add('isNotActive');
+  setBtnStyles({
+    disabled: true,
+    addClass: 'isNotActive',
+    removeClass: 'start-btn',
+  });
 }
 
-stopBtn.addEventListener('click', onStopChangeFontColor);
+ref.stopBtn.addEventListener('click', onStopChangeFontColor);
 
 function onStopChangeFontColor() {
   clearInterval(timerId);
-  startBtn.disabled = false;
-  startBtn.classList.remove('isNotActive');
+
+  setBtnStyles({
+    disabled: false,
+    addClass: 'start-btn',
+    removeClass: 'isNotActive',
+  });
 }
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, 0)}`;
+}
+
+function setBtnStyles({ disabled, addClass, removeClass }) {
+  ref.startBtn.disabled = disabled;
+  ref.startBtn.classList.add(addClass);
+  ref.startBtn.classList.remove(removeClass);
 }

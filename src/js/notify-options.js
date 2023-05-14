@@ -1,5 +1,5 @@
 export const notifyInit = {
-  width: '350px',
+  width: '450px',
   position: 'right-top',
   distance: '20px',
   timeout: 3000,

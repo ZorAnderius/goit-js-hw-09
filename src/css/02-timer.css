@@ -94,6 +94,7 @@ span[data-seconds] {
 }
 
 .isNotActive {
+  cursor: auto;
   color: rgb(171, 171, 169);
   background-color: #626161f0;
   box-shadow: 0px 2px 6px rgba(46, 47, 66, 0.08),
